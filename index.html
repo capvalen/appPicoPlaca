@@ -48,9 +48,9 @@
 	</style>
 	<h3 class="text-center py-4">Pico y Placa - Lima Perú</h3>
 	<div class="container-fluid">
-			<div class="d-flex justify-content-center"><img class="w-75 img-fluid " src="g934.png"></div>
+			<div class="d-flex justify-content-center"><img class=" img-fluid " src="g934.png"></div>
 			<p class="lead text-center" id="pLead">Hoy sólo circulan placas<br>
-				con último dígito <strong id="strQueCorre"></strong></p>
+				con <strong id="strQueCorre"></strong></p>
 				<p class='small mb-0 d-none' id="tituloMisPlacas">Mis Placas:</p>
 				<ul class="container">
 					<!-- <div class="row rowPadrePlacas">
@@ -170,19 +170,21 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="js/moment.min.js"></script>
+<!--<script src="js/index.js"></script>-->
+<script src="./js/moment.min.js"></script>
+
 <script>
 var queDiaes = moment().format('d'); //empieza dia domingo =0, lunes=1, etc sabado=6
 var listaArray=[];
 $(document).ready(function(){
 	//console.log(queDiaes);
-	querCorreHoy();
-	recuperarDatos();
-	$('#divBienvenida').remove();
+    queCorreHoy();
+    recuperarDatos();
+    $('#divBienvenida').remove();
 
-	$.each( $('.spanPlaca') , function(i, objeto){
-		evaluarPlaca($(objeto).text(), $(this).parent().parent().parent().index());
-	});
+    $.each( $('.spanPlaca') , function(i, objeto){
+        evaluarPlaca($(objeto).text(), $(this).parent().parent().parent().index());
+    });
 });
 $('#btnAddPlaca').click(function() {
 	$('#txtNombre').val('');
@@ -206,7 +208,7 @@ $('#btnGuardarPlaca').click(function() {
 		$('#modalAddPlaca').modal('hide');
 	}
 });
-function evaluarPlaca(placa, i ) {
+function evaluarPlaca(placa, i ) { 
 	$('#tituloMisPlacas').removeClass('d-none');
 	var ultDigito = parseFloat(placa.substring( placa.length-1,  placa.length ));
 	//console.log(ultDigito==null);
@@ -231,12 +233,14 @@ function evaluarPlaca(placa, i ) {
 				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
 			}
 		break;
-			if(ultDigito==null){
+			
+		default:
+            if(ultDigito==null){
 				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
-			}else if(ultDigito%2==0){
+			}else{
 				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-check-alt"></i>`);
 			}
-		default: break;
+        break;
 	}
 	
 	//console.log('u '+placa +" "+ultDigito)
@@ -256,28 +260,28 @@ function recuperarDatos(){
 			for(i=0; i<listaArray.length;i++){
 				var nueValor = listaArray[i].split(',');
 				$('ul').append(`<div class="row rowPadrePlacas">
-				<div class="col-9 divNombres my-3">
-					<li><span class="spanNombre">${nueValor[0]}</span> <br> <span class="spanPlaca">${nueValor[1]}</span></li>
-				</div> 
-				<div class="col-3 colValidacion d-flex align-items-center"></div>
-			</div>`);
+                    <div class="col-9 divNombres my-3">
+                        <li><span class="spanNombre">${nueValor[0]}</span> <br> <span class="spanPlaca">${nueValor[1]}</span></li>
+                    </div> 
+                    <div class="col-3 colValidacion d-flex align-items-center"></div>
+                </div>`);
+                evaluarPlaca(nueValor[1], i );
 			}
 		}
 	}
 	
 }
-function querCorreHoy(){
+function queCorreHoy(){
 	switch(queDiaes){
 		case '1': //Lunes
 		case '3': //Miercoles PARES
-			$('#strQueCorre').text('Par y cero');
+			$('#strQueCorre').text('dígito par y cero');
 
 		case '2': //Martes
 		case '4': //Jueves IMPARES
-		 $('#strQueCorre').text('Impar');
+		 $('#strQueCorre').text('dígito impar');
 		break;
-			$('#strQueCorre').text('Cualquiera');
-		default: break;
+		default: $('#strQueCorre').text('cualquier dígito'); break;
 	}
 }
 function guardarDatos(){
@@ -285,6 +289,7 @@ function guardarDatos(){
 	localStorage.setItem('listaPlacas', datos );
 	if(listaArray.length==0){
 		localStorage.removeItem('listaPlacas' );
+        localStorage.removeItem('primeraVez' );
 	}
 }
 $('#btnInstrucciones').click(function(){
