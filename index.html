@@ -1,140 +1,329 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/icofont.min.css">
-    
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/icofont.min.css">
+		<title>Pico y Placa, Lima - Perú</title>
+	</head>
+	<body>
+	<style>
+		#divBienvenida{
+			position: absolute;
+			top:0;
+			bottom:0;
+			left: 0;
+			right: 0;
+			background-color: #a35bb4;
+		}
+		
+		body{
+				background-color: #ffd527;
+				color: #333333;
+		}
+		#pLead{font-size: 2.0rem; color: #152c5ff0;}
+		ul{color: #152c5ff0;list-style-type: none;}
+		.spanPlaca{font-size: 2rem; text-transform: uppercase;}
+		.colValidacion{font-size: 2.5rem;}
+		.rowPadrePlacas{border-bottom:1px solid #ffec9b;}
+		.rowPadrePlacas:last-child{border-bottom:none; margin-bottom: 80px;}
+		.divNombres{line-height: 1;text-transform: uppercase;}
+		.form-control, #btnGuardarPlaca{height: calc(2em + .75rem + 2px); color: #4d4d4df0;}
+		.footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height: 60px;
+			line-height: 60px;
+			background-color: #f5f5f5;
+		}
+		footer i{font-size: 1.5rem; color: #21355c;}
+		.icofont-close-line{font-weight: 700;}
+	</style>
+	<h3 class="text-center py-4">Pico y Placa - Lima Perú</h3>
+	<div class="container-fluid">
+			<div class="d-flex justify-content-center"><img class="w-75 img-fluid " src="g934.png"></div>
+			<p class="lead text-center" id="pLead">Hoy sólo circulan placas<br>
+				con último dígito <strong id="strQueCorre"></strong></p>
+				<p class='small mb-0 d-none' id="tituloMisPlacas">Mis Placas:</p>
+				<ul class="container">
+					<!-- <div class="row rowPadrePlacas">
+						<div class="col-9 divNombres my-3">
+							<li><span class="spanNombre">Carlos</span> <br> <span class="spanPlaca">ABC-124</span></li>
+						</div> 
+						<div class="col-3 colValidacion d-flex align-items-center"><i class="icofont-check-alt"></i></div>
+					</div> -->
+				</ul>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col" id="btnInstrucciones"><i class="icofont-direction-sign"></i></div>
+				<div class="col" id="btnAddPlaca"><i class="icofont-plus"></i></div>
+				<div class="col" id="btnCreditos"><i class="icofont-cat-alt-3"></i></div>
+			</div>
+		</div>
+	</footer>
 
-    <title>Pico y Placa, Lima - Perú</title>
-  </head>
-  <body>
-  <style>
-    body{
-        background-color: #ffd527;
-        color: #333333;
-    }
-    #pLead{font-size: 2.0rem; color: #152c5ff0;}
-    ul{color: #152c5ff0;list-style-type: none;}
-    .spanPlaca{font-size: 2rem;}
-    .colValidacion{font-size: 2.5rem;}
-    .rowPadrePlacas{border-bottom:1px solid #ffec9b;}
-    .rowPadrePlacas:last-child{border-bottom:none;}
-    .divNombres{line-height: 1;}
-    .form-control, #btnGuardarPlaca{height: calc(2em + .75rem + 2px); color: #4d4d4df0;}
-    .footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 60px;
-      line-height: 60px;
-      background-color: #f5f5f5;
-    }
-    footer i{font-size: 1.5rem; color: #21355c;}
-    .icofont-close-line{font-weight: 700;}
-  </style>
-  <h3 class="text-center py-4">Pico y Placa - Lima Perú</h3>
-  <div class="container-fluid">
-      <div class="d-flex justify-content-center"><img class="w-75 img-fluid " src="g934.png"></div>
-      <p class="lead text-center" id="pLead">Hoy sólo circulan Placas<br>
-        con último dígito <strong>Par y Cero</strong></p>
-        <p class='small mb-0'>Mis Placas:</p>
-        <ul class="container">
-          <div class="row rowPadrePlacas">
-            <div class="col-9 divNombres my-3">
-              <li><span class="spanNombre">Carlos</span> <br> <span class="spanPlaca">ABC-124</span></li>
-            </div> 
-            <div class="col-3 colValidacion d-flex align-items-center"><i class="icofont-check-alt"></i></div>
-          </div>
-          <div class="row rowPadrePlacas">
-            <div class="col-9 divNombres my-3">
-              <li><span class="spanNombre">Lucia</span> <br> <span class="spanPlaca">EPC-511</span></li>
-            </div> 
-            <div class="col-3 colValidacion d-flex align-items-center"><i class="icofont-close-line"></i></div>
-          </div>
-        </ul>
-  </div>
-  <footer class="footer">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col"><i class="icofont-direction-sign"></i></div>
-        <div class="col" id="btnAddPlaca"><i class="icofont-plus"></i></div>
-        <div class="col"><i class="icofont-cat-alt-3"></i></div>
-      </div>
-    </div>
-  </footer>
+<div id="divBienvenida" class="d-flex justify-content-center align-items-center">
+	<img src="bienvenido.png" alt="">
+</div>
 
-
-
-  <!-- Modal para: agregar nueva Placa -->
- <!-- Modal -->
+<!-- Modal para: agregar nueva Placa -->
 <div class="modal fade" id="modalAddPlaca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-       
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h5 class="modal-title text-center" id="exampleModalLabel">Recordar placa</h5>
-          <input type="text" class="form-control my-3 text-center rounded-pill" placeholder="Nombre referencial" id="txtNombre">
-          <input type="text" class="form-control my-3 text-center rounded-pill" placeholder="N° Placa" id="txtPlaca">
-          <button type="button" class="btn btn-outline-warning btn-block rounded-pill mb-4  " id="btnGuardarPlaca">Save changes</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="js/moment.min.js"></script>
-  <script>
-    var queDiaes = moment().format('d'); //empieza dia domingo =0, lunes=1, etc sabado=6
-    $(document).ready(function(){
-      console.log(queDiaes);
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		 
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title text-center" id="exampleModalLabel">Recordar placa</h5>
+				<input type="text" class="form-control my-3 text-center rounded-pill" placeholder="Nombre referencial" id="txtNombre">
+				<input type="text" class="form-control my-3 text-center rounded-pill" placeholder="N° Placa" id="txtPlaca">
+				<button type="button" class="btn btn-outline-warning btn-block rounded-pill mb-4 " id="btnGuardarPlaca">Guardar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal para: borrar Placa -->
+<div class="modal fade" id="modalRemPlaca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		 
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title text-center" id="exampleModalLabel">Eliminar placa</h5>
+				<input type="text" class="form-control my-3 text-center rounded-pill text-uppercase" placeholder="Nombre referencial" id="txtRemNombre" disabled="true">
+				<input type="text" class="form-control my-3 text-center rounded-pill text-uppercase" placeholder="N° Placa" id="txtRemPlaca" disabled="true">
+				<button type="button" class="btn btn-outline-danger btn-block rounded-pill mb-4 " id="btnEliminarPlaca">Eliminar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal para: Mostrar detalles -->
+<div class="modal fade" id="modalInstrucciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		 
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title text-center" id="exampleModalLabel">Instrucciones</h5>
+				<img src="landing-page-cuerpo-1.png" class="img-fluid">
+				<p><strong>¿En qué consiste?</strong></p>
+				<p>Las unidades particulares con el último dígito en la placa de rodaje par (incluyendo el cero) no podrán circular los días lunes y miércoles.<br>
+				Las unidades particulares con el último dígito en la placa de rodaje impar no podrán circular los días martes y jueves.</p>
+				<p><strong>¿A quiénes implica?</strong></p>
+				<img src="landing-page-vehiculos-2.png" class="img-fluid">
+				<p>A los autos particulares (categorías M1 y N1).</p>
+				<p><strong>La implementación será en las siguientes rutas:</strong></p>
+				<p>1. Panamericana Sur - Panamericana Norte <br>
+					Desde intercambio Alipio Ponce hasta el óvalo Naranjal <br>
+					2. Tacna - Garcilaso de la Vega - Arequipa <br>
+					3. Javier Prado - La Marina <br>
+					Desde óvalo Huarochirí hasta av. Faucett <br>
+					4. Vía Expresa de Paseo de la República <br>
+					No incluye vías auxiliares <br>
+				</p>
 
-      $.each( $('.spanPlaca') , function(i, objeto){
-        evaluarPlaca($(objeto).text(), $(this).parent().parent().parent().index());
-      });
-    });
-    $('#btnAddPlaca').click(function() {
-      $('#modalAddPlaca').modal('show');
-    });
-    $('#btnGuardarPlaca').click(function() {
-      if(  $('#txtPlaca').val()==''){
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal para: Mendigar likes -->
+<div class="modal fade" id="modalCreditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title text-center" id="exampleModalLabel">Créditos</h5>
+				<div class="text-center py-2">
+					<img src="bitmap.png" class="img-fluid">
+				</div>
+				<p>Realizado por: <strong>Infocat Soluciones SAC</strong> a cargo de: Carlos Pariona Valencia, si te sirvió el presente aplicativo, te agradeceríamos que nos invites un café para apoyarlos, gracias.</p>
+				<div class="row">
+					<div class="col" id="divInterbank"><img src="interbank.png" class="img-fluid"></div>
+					<div class="col" id="divScotiabank"><img src="scotiabank.png" class="img-fluid"></div>
+					<div class="col" id="divBitcoin"><img src="bitcoin.png" class="img-fluid"></div>
+				</div>
+				<div class="row d-none container px-3" id="divMigaja">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/moment.min.js"></script>
+<script>
+var queDiaes = moment().format('d'); //empieza dia domingo =0, lunes=1, etc sabado=6
+var listaArray=[];
+$(document).ready(function(){
+	//console.log(queDiaes);
+	querCorreHoy();
+	recuperarDatos();
+	$('#divBienvenida').remove();
 
-      }else{
-        $('ul').append(`<div class="row rowPadrePlacas">
-            <div class="col-9 divNombres my-3">
-              <li><span class="spanNombre">${$('#txtNombre').val()}</span> <br> <span class="spanPlaca">${$('#txtPlaca').val()}</span></li>
-            </div> 
-            <div class="col-3 colValidacion d-flex align-items-center"></div>
-          </div>`);
-        evaluarPlaca($('#txtPlaca').val(), $('.rowPadrePlacas ').length-1 )
-        $('#modalAddPlaca').modal('hide');
-      }
-    });
-    function evaluarPlaca(placa, i) { 
-      var ultDigito = parseFloat(placa.substring( placa.length-1,  placa.length ));
-      console.log('u '+placa +" "+ultDigito)
-      if(ultDigito==null){
-        $('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
-      }else if(ultDigito%2==0){
-        $('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-check-alt"></i>`);
-      }else{
-        $('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
-      }
-        
-    }
-  </script>
-  </body>
+	$.each( $('.spanPlaca') , function(i, objeto){
+		evaluarPlaca($(objeto).text(), $(this).parent().parent().parent().index());
+	});
+});
+$('#btnAddPlaca').click(function() {
+	$('#txtNombre').val('');
+	$('#txtPlaca').val('');
+	$('#modalAddPlaca').modal('show');
+});
+$('#btnGuardarPlaca').click(function() {
+	if(  $('#txtPlaca').val()==''){
+
+	}else{
+		listaArray.push( [$('#txtNombre').val() , $('#txtPlaca').val()]);
+		//console.log(listaArray); //0: Array [ "dsadwq", "512r2" ]
+		guardarDatos();
+		$('ul').append(`<div class="row rowPadrePlacas">
+				<div class="col-9 divNombres my-3">
+					<li><span class="spanNombre">${$('#txtNombre').val()}</span> <br> <span class="spanPlaca">${$('#txtPlaca').val()}</span></li>
+				</div> 
+				<div class="col-3 colValidacion d-flex align-items-center"></div>
+			</div>`);
+		evaluarPlaca($('#txtPlaca').val(), $('.rowPadrePlacas ').length-1 )
+		$('#modalAddPlaca').modal('hide');
+	}
+});
+function evaluarPlaca(placa, i ) {
+	$('#tituloMisPlacas').removeClass('d-none');
+	var ultDigito = parseFloat(placa.substring( placa.length-1,  placa.length ));
+	//console.log(ultDigito==null);
+	switch(queDiaes){
+		case '1': //Lunes
+		case '3': //Miercoles PARES
+			if(ultDigito==null || isNaN(ultDigito)){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
+			}else if(ultDigito%2==0){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-check-alt"></i>`);
+			}else{
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
+			}
+
+		case '2': //Martes
+		case '4': //Jueves IMPARES
+			if(ultDigito==null || isNaN(ultDigito)){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
+			}else if(ultDigito%2!=0){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-check-alt"></i>`);
+			}else{
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
+			}
+		break;
+			if(ultDigito==null){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-close-line"></i>`)
+			}else if(ultDigito%2==0){
+				$('.rowPadrePlacas').eq(i).find('.colValidacion').html(`<i class="icofont-check-alt"></i>`);
+			}
+		default: break;
+	}
+	
+	//console.log('u '+placa +" "+ultDigito)
+	
+}
+function recuperarDatos(){
+	var primeraVez = localStorage.getItem('primeraVez');
+	if(primeraVez== undefined || primeraVez==null){
+		setInterval(function(){ $('#divBienvenida').remove(); }, 2500)
+		localStorage.setItem('primeraVez', [1]);
+	}
+	
+	var datos = localStorage.getItem('listaPlacas');
+	if(datos!= undefined && datos!=null){
+		listaArray = datos.split('//');
+		if(listaArray.length>0){
+			for(i=0; i<listaArray.length;i++){
+				var nueValor = listaArray[i].split(',');
+				$('ul').append(`<div class="row rowPadrePlacas">
+				<div class="col-9 divNombres my-3">
+					<li><span class="spanNombre">${nueValor[0]}</span> <br> <span class="spanPlaca">${nueValor[1]}</span></li>
+				</div> 
+				<div class="col-3 colValidacion d-flex align-items-center"></div>
+			</div>`);
+			}
+		}
+	}
+	
+}
+function querCorreHoy(){
+	switch(queDiaes){
+		case '1': //Lunes
+		case '3': //Miercoles PARES
+			$('#strQueCorre').text('Par y cero');
+
+		case '2': //Martes
+		case '4': //Jueves IMPARES
+		 $('#strQueCorre').text('Impar');
+		break;
+			$('#strQueCorre').text('Cualquiera');
+		default: break;
+	}
+}
+function guardarDatos(){
+	var datos = listaArray.join('//');
+	localStorage.setItem('listaPlacas', datos );
+	if(listaArray.length==0){
+		localStorage.removeItem('listaPlacas' );
+	}
+}
+$('#btnInstrucciones').click(function(){
+	$('#modalInstrucciones').modal('show');
+});
+$('ul').on('click', '.rowPadrePlacas', function(){
+	$('#btnEliminarPlaca').attr('data-id', $(this).index());
+	$('#txtRemNombre').val($(this).find('.spanNombre').text());
+	$('#txtRemPlaca').val($(this).find('.spanPlaca').text());
+	
+	$('#modalRemPlaca').modal('show');
+});
+$('#btnEliminarPlaca').click(function(){
+	var idElim = $('#btnEliminarPlaca').attr('data-id');
+	listaArray.splice(idElim,1);
+	guardarDatos();
+	$('.rowPadrePlacas').eq(idElim).remove();
+	$('#modalRemPlaca').modal('hide');
+
+});
+$('#btnCreditos').click(function(){
+	$('#modalCreditos').modal('show');
+});
+$('#divInterbank').click(function(){
+	$('#divMigaja').html(`<p class="text-center">Cta. Soles en Interbank:<br>
+		<strong>500-31022-21998</strong><br>
+		A nombre: Carlos Pariona</p>`).removeClass('d-none');
+});
+$('#divScotiabank').click(function(){
+	$('#divMigaja').html(`<p class="text-center">Cta. Soles en Scotiabank:<br>
+		<strong>770-8079863</strong><br>
+		A nombre: Carlos Pariona</p>`).removeClass('d-none');
+});
+$('#divBitcoin').click(function(){
+	$('#divMigaja').html(`<p class="text-center">Dirección de Bitcoins:<br>
+		<img src="btcCaptura.png" class="img-fluid">
+		<strong>bc1qr9dsx4gx0067u66j0693nlc3xcswtjr42pmrve</strong></p>`).removeClass('d-none');
+});
+
+</script>
+</body>
 </html>
